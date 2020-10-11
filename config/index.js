@@ -17,11 +17,11 @@ module.exports = {
   |
   */
   username: Env.get('AMQP_USERNAME') ?? 'admin',
-  password: Env.get('AMQP_PASSWORD') ??'admin',
+  password: Env.get('AMQP_PASSWORD') ?? 'admin',
 
   /*
   | RabbitMQ Host
   |
   */
-  host: Env.get('AMQP_HOST') ??' localhost'
+  host: Env.get('AMQP_HOST') ?? 'localhost'
 }
