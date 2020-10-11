@@ -1,6 +1,6 @@
 {
   "name": "adonis-amqp-eventbus",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An adonis package that implements AMQP",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,13 @@
   },
   "author": "Jinggo Villamor <jcvillamor@multisyscorp>",
   "homepage": "https://github.com/msys-stackbox/adonis-amqp-eventbus#readme",
+  "bugs": {
+    "url": "https://github.com/msys-stackbox/adonis-amqp-eventbus/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msys-stackbox/adonis-amqp-eventbus.git"
+  },
   "keywords": [
     "adonis",
     "amqp",
@@ -16,7 +23,9 @@
   "license": "MIT",
   "devDependencies": {
     "@adonisjs/ace": "^5.0.8",
-    "@adonisjs/fold": "^4.0.9"
+    "@adonisjs/fold": "^4.0.9",
+    "@adonisjs/sink": "^1.0.17",
+    "japa": "^3.0.1"
   },
   "dependencies": {
     "amqplib": "^0.6.0"
