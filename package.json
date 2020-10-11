@@ -1,13 +1,13 @@
 {
   "name": "adonis-amqp-eventbus",
   "version": "1.0.0",
-  "description": "",
+  "description": "An adonis package that implements AMQP",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jinggo Villamor <jcvillamor@multisyscorp>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@adonisjs/ace": "^5.0.8",
     "@adonisjs/fold": "^4.0.9"
