@@ -1,6 +1,11 @@
 # adonis-amqp-eventbus
 
-An implementation of AMQP eventbus for Adonis.
+A beta implementation of AMQP eventbus for Adonis. This implementation is limited to AMQP queue only. Used it in production at your own risk.
+
+## Roadmaps
+
+* To implement exchange
+* To implement unit testing
 
 ## Installation
 
