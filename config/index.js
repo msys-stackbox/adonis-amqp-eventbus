@@ -13,14 +13,15 @@ const Env = use('Env');
 
 module.exports = {
   /*
-  |--------------------------------------------------------------------------
-  | Credentials
-  |--------------------------------------------------------------------------
-  |
   | RabbitMQ Credentials
   |
   */
-  username: Event.get('AMQP_USERNAME') ?? 'admin',
-  password: Event.get('AMQP_PASSWORD') ??'admin',
-  host: Event.get('AMQP_HOST') ??' localhost'
+  username: Env.get('AMQP_USERNAME') ?? 'admin',
+  password: Env.get('AMQP_PASSWORD') ??'admin',
+
+  /*
+  | RabbitMQ Host
+  |
+  */
+  host: Env.get('AMQP_HOST') ??' localhost'
 }
