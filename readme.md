@@ -2,12 +2,18 @@
 
 An implementation of AMQP eventbus for Adonis.
 
+## Installation
+
+```bash
+adonis install adonis-amqp-eventbus
+```
+
 ## Register provider
 Register provider inside `start/app.js` file.
 
 ```js
 const providers = [
-  '@adonisjs/amqpeventbus/providers/amqpeventbus'
+  'adonis-amqp-eventbus/providers/AmqpEventBusProvider'
 ]
 ```
 
