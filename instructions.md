@@ -34,3 +34,8 @@ AmqpEventBus.consume('queue_name', (channel) => (message) => {
   channel.ack(message);
 })
 ```
+
+
+## Config
+
+The config file is saved as `config/eventbus.js`.
