@@ -1,0 +1,18 @@
+{
+  "name": "adonis-amqp-eventbus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jinggo Villamor <jcvillamor@multisyscorp>",
+  "license": "ISC",
+  "devDependencies": {
+    "@adonisjs/ace": "^5.0.8",
+    "@adonisjs/fold": "^4.0.9"
+  },
+  "dependencies": {
+    "amqplib": "^0.6.0"
+  }
+}
