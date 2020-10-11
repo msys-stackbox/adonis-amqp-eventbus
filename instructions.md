@@ -1,9 +1,10 @@
+
 ## Register provider
 Register provider inside `start/app.js` file.
 
 ```js
 const providers = [
-  '@adonisjs/amqpeventbus/providers/amqpeventbus'
+  'adonis-amqp-eventbus/providers/AmqpEventBusProvider'
 ]
 ```
 
@@ -33,4 +34,3 @@ AmqpEventBus.consume('queue_name', (channel) => (message) => {
   channel.ack(message);
 })
 ```
-
