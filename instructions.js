@@ -14,7 +14,7 @@ const path = require('path')
 module.exports = async (cli) => {
   try {
     await cli.copy(
-      path.join(__dirname, './config/config.js'),
+      path.join(__dirname, './config/index.js'),
       path.join(cli.helpers.configPath(), 'eventbus.js')
     )
     await cli.command.completed('create', 'config/eventbus.js')
