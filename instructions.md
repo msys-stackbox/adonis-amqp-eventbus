@@ -1,4 +1,3 @@
-
 ## Register provider
 Register provider inside `start/app.js` file.
 
@@ -12,15 +11,15 @@ const providers = [
 const AmqpEventBus = use('AmqpEventBus')
 ```
 
-
 Publish
 
 ```js
-const options = { deliveryMode: true, durable: true };
 
-const cb = (msg) => { console.log(msg) }
+const msg = "Hello world";
 
-AmqpEventBus.publish('queue_name', msg, options, cb)
+AmqpProducer.publish('queue_name', msg, (context, b) => {
+  // Callback once you send the message
+});
 ```
 
 Consume
@@ -34,7 +33,6 @@ AmqpEventBus.consume('queue_name', (channel) => (message) => {
   channel.ack(message);
 })
 ```
-
 
 ## Config
 
