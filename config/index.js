@@ -13,15 +13,8 @@ const Env = use('Env');
 
 module.exports = {
   /*
-  | RabbitMQ Credentials
+  | RabbitMQ Connection String
   |
   */
-  username: Env.get('AMQP_USERNAME') ?? 'admin',
-  password: Env.get('AMQP_PASSWORD') ?? 'admin',
-
-  /*
-  | RabbitMQ Host
-  |
-  */
-  host: Env.get('AMQP_HOST') ?? 'localhost'
+  rabbitmqURL: Env.get('RABBIT_MQ_URL') ?? 'amqp://guest:guest@localhost:5672'
 }

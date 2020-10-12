@@ -2,7 +2,7 @@
 
 const { Command } = use('@adonisjs/ace');
 
-const AmqpEventBus = use('AmqpEventBus')
+const AmqpProducer = use('AmqpProducer');
 
 class Publish extends Command {
   static get signature() {
@@ -20,9 +20,9 @@ class Publish extends Command {
     if (!msg) {
       throw 'Message was not set';
     }
-
-    AmqpEventBus.publish('test', msg, {deliveryMode: true, durable: true }, (msg) => {
-      console.log(msg);
+    
+    await AmqpProducer.publish('test', msg, (context, b) => {
+      console.log('Callbacked here', context);
     });
   }
 }
