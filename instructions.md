@@ -17,7 +17,7 @@ Publish
 
 const msg = "Hello world";
 
-AmqpProducer.publish('queue_name', msg, (context, b) => {
+AmqpProducer.publish('queue_name', msg, (queuename, context) => {
   // Callback once you send the message
 });
 ```

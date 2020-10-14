@@ -30,11 +30,12 @@ const AmqpEventBus = use('AmqpEventBus')
 Publish
 
 ```js
-const options = { deliveryMode: true, durable: true };
 
-const cb = (msg) => { console.log(msg) }
+const msg = "Hello world";
 
-AmqpEventBus.publish('queue_name', msg, options, cb)
+AmqpProducer.publish('queue_name', msg, (queuename, context) => {
+  // Callback once you send the message
+});
 ```
 
 Consume
