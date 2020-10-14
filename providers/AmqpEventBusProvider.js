@@ -21,8 +21,8 @@ class AmqpEventBusProvider extends ServiceProvider {
 
       const consumer = new AmqpConsumer(Config, Logger);
 
-      consumer.connect();
-
+      consumer.connect(async () => { await consumer.startConsumer() });
+      
       return consumer;
     })
 
@@ -31,8 +31,8 @@ class AmqpEventBusProvider extends ServiceProvider {
       const Logger = this.app.use('Logger')
 
       const producer = new AmqpProducer(Config, Logger);
-      
-      producer.connect();
+
+      producer.connect(async () => { await producer.startPublisher() });
 
       return producer;
     })

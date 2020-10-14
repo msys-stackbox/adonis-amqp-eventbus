@@ -11,24 +11,54 @@ const AmqpEventBusService = require('./AmqpEventBusService');
  */
 class AmqpProducer extends AmqpEventBusService {
 
-  constructor(Config) {
-    super(Config, 'Producer');
+  constructor(Config, logger) {
+    super(Config, logger, 'Producer')
+    this._offlinePubQueue = []
   }
 
-  async publish(queue, context, callback) {
-    
-    this._connection.then(channel => {
-      return channel.assertQueue(queue, { durable: true }).then(() => {
-
-        channel.sendToQueue(queue, Buffer.from(context), { deliveryMode: true });
-
-        if (callback) {
-          callback(queue, context)
-        }
-
-        return channel.close();
+  async publish(exchange, routingKey, content) {
+    try {
+      this._pubChannel.assertExchange(exchange, 'fanout', {
+        durable: false
       })
-    }).finally(async () => { await this.closeConnection() });
+
+      this._pubChannel.publish(exchange, routingKey, Buffer.from(content), { persistent: true },
+        (err, _ok) => {
+          if (err) {
+            this.logger.error('[AMQP Producer] publish error:', err)
+            this._offlinePubQueue.push([exchange, routingKey, content])
+            this._pubChannel.connection.close()
+          }
+        })
+    } catch (e) {
+      this.logger.error('[AMQP Producer] channel publish failure: ', e.message)
+      this._offlinePubQueue.push([exchange, routingKey, content])
+    }
+  }
+
+  sendPending() {
+    if (this._offlinePubQueue.length > 0) {
+      var [exchange, routingKey, content] = this._offlinePubQueue.shift()
+      this.publish(exchange, routingKey, content)
+    }
+
+    setTimeout(() => this.sendPending(), 5000)
+  }
+
+  async startPublisher() {
+    this._connection.createConfirmChannel((err, ch) => {
+      if (this.closeOnErr(err)) return
+      ch.on('error', function (err) {
+        this.logger.error('[AMQP Producer] channel error', err.message)
+      })
+      ch.on('close', function () {
+        this.logger.info('[AMQP Producer] channel closed')
+      })
+
+      this._pubChannel = ch
+
+      this.sendPending()
+    })
   }
 }
 
