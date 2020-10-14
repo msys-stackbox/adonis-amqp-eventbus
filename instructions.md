@@ -7,40 +7,57 @@ const providers = [
 ]
 ```
 
-Publish
+## Publish
 
 ```js
 const AmqpProducer = use('AmqpProducer');
 
-const msg = "Hello world";
-
-AmqpProducer.publish('queue_name', msg, (queuename, context) => {
-  // Callback when message sent
-});
+AmqpProducer.publish('example-exchange', 'routing-key', 'context-message');
 ```
 
-Publish without callback
+
+## Consume
+
+This will boot on startup. `start/hooks.js`
 
 ```js
-const AmqpProducer = use('AmqpProducer');
+const { hooks } = require('@adonisjs/ignitor');
 
-AmqpProducer.publish('queue_name', msg);
-```
-
-Consume
-
-```js
-const AmqpConsumer = use('AmqpConsumer');
-
-AmqpEventBus.consume('queue_name', (channel) => (message) => {
-  if (message === null) return;
-
-  const body = message.content.toString();
-  console.log(" [x] Received '%s'", body);
-  channel.ack(message);
+hooks.after.providersBooted(() => {
+  const AmqpConsumer = use('AmqpConsumer');
+  AmqpConsumer.startConsumer();
 })
 ```
 
 ## Config
+
+```js
+module.exports = {
+  /*
+  | RabbitMQ Connection String
+  |
+  */
+  rabbitmq_host: Env.get('RABBITMQ_HOST') || 'localhost',
+  rabbitmq_port: Env.get('RABBITMQ_PORT') || '5672',
+  rabbitmq_user: Env.get('RABBITMQ_USER') || 'user',
+  rabbitmq_password: Env.get('RABBITMQ_PASSWORD') || 'password',
+
+  /*
+  * Consumer to listeners
+  */
+  consumers: [
+    {
+      queueName: 'user-registered',
+      exchange: 'user-exchange',
+      handler: (content) => console.log('From registered %s',content.content.toString())
+    },
+    {
+      queueName: 'user-aggregated',
+      exchange: 'user-exchange',
+      handler: (content) => console.log('From aggregated %s', content.content.toString())
+    }
+  ]
+}
+```
 
 The config file is saved as `config/eventbus.js`.
