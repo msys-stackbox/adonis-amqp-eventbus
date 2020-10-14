@@ -22,25 +22,31 @@ const providers = [
 ]
 ```
 
-```js
-const AmqpEventBus = use('AmqpEventBus')
-```
-
-
 Publish
 
 ```js
+const AmqpProducer = use('AmqpProducer');
 
 const msg = "Hello world";
 
 AmqpProducer.publish('queue_name', msg, (queuename, context) => {
-  // Callback once you send the message
+  // Callback when message sent
 });
+```
+
+Publish without callback
+
+```js
+const AmqpProducer = use('AmqpProducer');
+
+AmqpProducer.publish('queue_name', msg);
 ```
 
 Consume
 
 ```js
+const AmqpConsumer = use('AmqpConsumer');
+
 AmqpEventBus.consume('queue_name', (channel) => (message) => {
   if (message === null) return;
 
@@ -50,3 +56,6 @@ AmqpEventBus.consume('queue_name', (channel) => (message) => {
 })
 ```
 
+## Config
+
+The config file is saved as `config/eventbus.js`.
