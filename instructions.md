@@ -7,13 +7,11 @@ const providers = [
 ]
 ```
 
-```js
-const AmqpEventBus = use('AmqpEventBus')
-```
-
 Publish
 
 ```js
+const AmqpProducer = use('AmqpProducer');
+
 const msg = "Hello world";
 
 AmqpProducer.publish('queue_name', msg, (queuename, context) => {
@@ -24,13 +22,16 @@ AmqpProducer.publish('queue_name', msg, (queuename, context) => {
 Publish without callback
 
 ```js
+const AmqpProducer = use('AmqpProducer');
+
 AmqpProducer.publish('queue_name', msg);
 ```
-
 
 Consume
 
 ```js
+const AmqpConsumer = use('AmqpConsumer');
+
 AmqpEventBus.consume('queue_name', (channel) => (message) => {
   if (message === null) return;
 
