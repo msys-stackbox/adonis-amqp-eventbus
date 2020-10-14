@@ -14,13 +14,19 @@ const AmqpEventBus = use('AmqpEventBus')
 Publish
 
 ```js
-
 const msg = "Hello world";
 
 AmqpProducer.publish('queue_name', msg, (queuename, context) => {
-  // Callback once you send the message
+  // Callback when message sent
 });
 ```
+
+Publish without callback
+
+```js
+AmqpProducer.publish('queue_name', msg);
+```
+
 
 Consume
 
