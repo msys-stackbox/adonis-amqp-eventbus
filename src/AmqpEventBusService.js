@@ -21,18 +21,6 @@ class AmqpEventBusService {
 
   async closeConnection() {
     this._openConn.close();
-
-    if (this.type === "Producer") {
-      //workaround to close the connection
-      //will fix soon...
-      setTimeout(() => {
-        this.bail(); 
-      }, 300);
-    }
-  }
-
-  bail() {
-    process.exit(1)
   }
 }
 
