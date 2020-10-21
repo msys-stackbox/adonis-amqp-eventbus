@@ -35,7 +35,7 @@ module.exports = {
       queueName: 'test1:event.name:test2',
       exchange: 'event.name',
       handler: (ch) => (content) => {
-        console.log(content.content.toString());
+        // ... todo here...
         ch.ack(content);
       }
     }
