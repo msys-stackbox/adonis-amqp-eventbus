@@ -52,27 +52,6 @@ class AmqpEventBusService {
     this._connection.close()
     return true
   }
-
-  /*
-  async connect() {
-    this.logger.info(`[AMQP ${this.type}] Trying to connect to ${this.rabbitmqURL}`)
-    this._connection = amqp.connect(this.rabbitmqURL)
-      .then(connection => {
-        
-        this.logger.info(`[AMQP ${this.type}] connection established`)
-        this._openConn = connection;
-        return connection.createChannel();
-
-      }).catch((error) => {
-        console.log(error);
-        console.log('Error')
-      });
-  }
-
-  async closeConnection() {
-    this._openConn.close();
-  }
-  */
 }
 
 module.exports = AmqpEventBusService;

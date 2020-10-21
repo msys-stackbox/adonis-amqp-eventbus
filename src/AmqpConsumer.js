@@ -37,9 +37,8 @@ class AmqpConsumer extends AmqpEventBusService {
 
         this._channel.assertQueue(l.queueName, { durable: true }, (err, _q) => {
           if (this.closeOnErr(err)) return
-
           this._channel.bindQueue(l.queueName, l.exchange, l.queueName)
-          this._channel.consume(l.queueName, l.handler, { noAck: true })
+          this._channel.consume(l.queueName, l.handler(this._channel), { noAck: false })
           this.logger.info('[AMQP Consumer] Worker is started')
         })
       })

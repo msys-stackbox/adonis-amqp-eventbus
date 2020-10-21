@@ -22,18 +22,22 @@ module.exports = {
   rabbitmq_password: Env.get('RABBITMQ_PASSWORD') || 'password',
 
   /*
-  * Consumer to listeners
+  * Durable (the queue will survive a broker restart)
+  */
+
+  durable: false,
+
+  /*
+  * Consumer to listeners. You can add multiple consumers as you want
   */
   consumers: [
     {
-      queueName: 'user-registered',
-      exchange: 'user-exchange',
-      handler: (content) => console.log('From registered %s', content.content.toString())
-    },
-    {
-      queueName: 'user-aggregated',
-      exchange: 'user-exchange',
-      handler: (content) => console.log('From aggregated %s', content.content.toString())
+      queueName: 'test1:event.name:test2',
+      exchange: 'event.name',
+      handler: (ch) => (content) => {
+        console.log(content.content.toString());
+        ch.ack(content);
+      }
     }
   ]
 }

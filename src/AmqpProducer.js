@@ -31,7 +31,7 @@ class AmqpProducer extends AmqpEventBusService {
           }
         })
     } catch (e) {
-      this.logger.error('[AMQP Producer] channel publish failure: ', e.message)
+      this.logger.error('[AMQP Producer] channel publish failure. Re-establishing...')
       this._offlinePubQueue.push([exchange, routingKey, content])
     }
   }
