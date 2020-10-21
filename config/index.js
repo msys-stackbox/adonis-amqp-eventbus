@@ -22,12 +22,6 @@ module.exports = {
   rabbitmq_password: Env.get('RABBITMQ_PASSWORD') || 'password',
 
   /*
-  * Durable (the queue will survive a broker restart)
-  */
-
-  durable: false,
-
-  /*
   * Consumer to listeners. You can add multiple consumers as you want
   */
   consumers: [
