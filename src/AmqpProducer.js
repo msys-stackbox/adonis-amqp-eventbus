@@ -49,7 +49,7 @@ class AmqpProducer extends AmqpEventBusService {
     this._connection.createConfirmChannel((err, ch) => {
       if (this.closeOnErr(err)) return
       ch.on('error', function (err) {
-        this.logger.error('[AMQP Producer] channel error', err.message)
+        this.logger.error(`[AMQP Producer] channel error ${err.message}`)
       })
       ch.on('close', function () {
         this.logger.info('[AMQP Producer] channel closed')

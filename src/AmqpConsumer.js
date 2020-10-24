@@ -21,7 +21,7 @@ class AmqpConsumer extends AmqpEventBusService {
     this._connection.createChannel((err, ch) => {
       if (this.closeOnErr(err)) return
       ch.on('error', (err) => {
-        this.logger.error('[AMQP Consumer] channel error', err.message)
+        this.logger.error(`[AMQP Consumer] channel error ${error.message}`)
       })
       ch.on('close', () => {
         this.logger.info('[AMQP Consumer] channel closed')
