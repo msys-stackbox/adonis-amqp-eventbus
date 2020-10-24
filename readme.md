@@ -24,6 +24,7 @@ const providers = [
 ```js
 const AmqpProducer = use('AmqpProducer');
 
+/* Context message must be string. If this is an object you may use JSON.stringify()*/
 AmqpProducer.publish('example-exchange', 'routing-key', 'context-message');
 ```
 
@@ -35,9 +36,8 @@ This will boot on startup. `start/hooks.js`
 ```js
 const { hooks } = require('@adonisjs/ignitor');
 
-hooks.after.providersBooted(() => {
-  const AmqpConsumer = use('AmqpConsumer');
-  AmqpConsumer.startConsumer();
+hooks.after.httpServer(() => {
+  use('AmqpConsumer');
 })
 ```
 
@@ -61,12 +61,10 @@ module.exports = {
     {
       queueName: 'user-registered',
       exchange: 'user-exchange',
-      handler: (content) => console.log('From registered %s',content.content.toString())
-    },
-    {
-      queueName: 'user-aggregated',
-      exchange: 'user-exchange',
-      handler: (content) => console.log('From aggregated %s', content.content.toString())
+      handler: (ch) => (context) => {
+        //...your handler here
+        ch.ack(context)
+      })
     }
   ]
 }
