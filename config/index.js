@@ -23,6 +23,8 @@ module.exports = {
 
   /*
   * Consumer to listeners. You can add multiple consumers as you want
+  *
+  * This will automatically create an exchange and queue. Also, bind them automatically as well
   */
   consumers: [
     {

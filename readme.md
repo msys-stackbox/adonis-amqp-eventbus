@@ -1,7 +1,6 @@
 # adonis-amqp-eventbus
 
-A beta implementation of AMQP eventbus for Adonis. This implementation is limited to AMQP queue only. Used it in production at your own risk.
-
+A beta implementation of AMQP eventbus for Adonis.
 This is also based on this implimentation [adonisjs-rabbitmq](https://github.com/josemiguelmelo/adonisjs-rabbitmq)
 
 ## Installation
@@ -24,7 +23,7 @@ const providers = [
 ```js
 const AmqpProducer = use('AmqpProducer');
 
-/* Context message must be string. If this is an object you may use JSON.stringify()*/
+/* Context message must be a string. If this is an object you may use JSON.stringify()*/
 AmqpProducer.publish('example-exchange', 'routing-key', 'context-message');
 ```
 
@@ -56,6 +55,8 @@ module.exports = {
 
   /*
   * Consumer to listeners
+  * 
+  * This will automatically create an exchange and queue. Also, bind them automatically as well
   */
   consumers: [
     {

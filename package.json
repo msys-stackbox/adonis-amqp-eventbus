@@ -1,6 +1,6 @@
 {
   "name": "adonis-amqp-eventbus",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "An adonis package that implements AMQP",
   "main": "index.js",
   "scripts": {

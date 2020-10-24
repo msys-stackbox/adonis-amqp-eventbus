@@ -12,7 +12,7 @@ const providers = [
 ```js
 const AmqpProducer = use('AmqpProducer');
 
-/* Context message must be string. If this is an object you may use JSON.stringify()*/
+/* Context message must be a string. If this is an object you may use JSON.stringify()*/
 AmqpProducer.publish('example-exchange', 'routing-key', 'context-message');
 ```
 
@@ -44,6 +44,8 @@ module.exports = {
 
   /*
   * Consumer to listeners
+  * 
+  * This will automatically create an exchange and queue. Also, bind them automatically as well
   */
   consumers: [
     {
