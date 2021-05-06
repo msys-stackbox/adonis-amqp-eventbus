@@ -8,7 +8,7 @@ class AmqpEventBusService {
   constructor(Config, logger, Type) {
     const host = Config.get('eventbus.rabbitmq_host');
     const user = Config.get('eventbus.rabbitmq_user');
-    const password = Config.get('eventbus.rabbitmq_user');
+    const password = Config.get('eventbus.rabbitmq_password');
     const port = Config.get('eventbus.rabbitmq_port');
     
     this.rabbitmqURL = `amqp://${user}:${password}@${host}:${port}`;
