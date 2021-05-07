@@ -41,6 +41,7 @@ module.exports = {
   rabbitmq_port: Env.get('RABBITMQ_PORT') || '5672',
   rabbitmq_user: Env.get('RABBITMQ_USER') || 'user',
   rabbitmq_password: Env.get('RABBITMQ_PASSWORD') || 'password',
+  rabbitmq_protocol: Env.get('RABBITMQ_PROTOCOL') || 'amqp',
 
   /*
   * Consumer to listeners
