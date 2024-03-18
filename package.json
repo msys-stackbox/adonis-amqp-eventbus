@@ -22,7 +22,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@adonisjs/ace": "^5.0.8",
+    "@adonisjs/ace": "^13.0.0",
     "@adonisjs/fold": "^4.0.9",
     "@adonisjs/sink": "^1.0.17",
     "japa": "^3.0.1"
